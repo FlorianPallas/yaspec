@@ -1,0 +1,10 @@
+---
+source: types_jsonschema/tests/draft_2020_12.rs
+expression: schema
+---
+Schema(
+  type: Some([
+    string,
+  ]),
+  format: Some("email"),
+)

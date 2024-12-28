@@ -1,0 +1,15 @@
+[package]
+name = "yaspec_openapi"
+description = "OpenAPI Adapter for YASpec"
+license = "AGPL-3.0"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+yaspec = { path = "../yaspec" }
+types_openapi = { path = "../types_openapi" }
+indexmap = { version = "2.5.0", features = ["serde"] }
+
+[dev-dependencies]
+insta = { version = "1.40.0", features = ["ron", "yaml"] }
+pretty_assertions = "1.4.0"
