@@ -1,0 +1,7 @@
+{% if let Some(description) = self.0 %}
+{%+ for line in description.split("\n") %}
+/**
+{{+ " * " }}{{ line +}}
+{{+ " */" +}}
+{%+ endfor %}
+{%+ endif %}

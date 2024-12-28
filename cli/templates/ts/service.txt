@@ -1,0 +1,6 @@
+{{ DescriptionTemplate(service.description) }}
+export interface {{+ name +}} {
+{% for (name, action) in service.actions +%}
+{{+ ActionTemplate(name, action)|tab }}
+{% endfor +%}
+}

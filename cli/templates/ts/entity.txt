@@ -1,0 +1,24 @@
+{{ DescriptionTemplate(entity.description) }}
+export {%+ match entity.inner %}
+{% when Schema::Record { fields } %}
+class {{+ name +}} {
+{% for (name, field) in fields +%}
+{{+ DescriptionTemplate(field.description)|tab +}}
+{{+ name|tab }}: {{+ ShapeTemplate(field.inner) }};
+{% endfor +%}
+}
+{% when Schema::Union { fields } %}
+type {{+ name +}} =
+{% for (key, field) in fields +%}
+| { key: '{{+ key +}}', value: {{+ ShapeTemplate(field.inner) +}} }
+{% endfor %};
+{% when Schema::Enum { fields } %}
+enum {{+ name +}} {
+{% for (name, field) in fields +%}
+{{+ DescriptionTemplate(field.description)|tab +}}
+{{+ name|tab +}} = '{{ name }}',
+{% endfor +%}
+}
+{% when Schema::Alias { shape } %}
+type {{+ name +}} = {{+ ShapeTemplate(shape) }};
+{% endmatch %}

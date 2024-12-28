@@ -1,0 +1,11 @@
+[package]
+name = "yaspec"
+description = "Language Agnostic API Specification Format"
+license = "AGPL-3.0"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+derive_more = { version = "1.0.0", features = ["deref"] }
+indexmap = { version = "2.5.0", features = ["serde"] }
+serde = { version = "1.0.210", features = ["derive"] }

@@ -1,0 +1,14 @@
+{{ DescriptionTemplate(description) }}
+{{ self.0 }}(
+{% for (name, shape) in inputs %}
+{{+ name +}}: {{+ ShapeTemplate(shape) +}}
+{% endfor %}
+): Promise<
+{% if outputs.is_empty() %}
+void
+{% else %}
+{% for (key, value) in outputs +%}
+  | { key: '{{+ key +}}', value: {%+ if let Some(value) = value.inner %}{{+ ShapeTemplate(value) }}{% else %}void{% endif +%} }
+{% endfor %}
+{% endif +%}
+>;

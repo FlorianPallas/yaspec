@@ -1,0 +1,18 @@
+{% match self.0 %}
+{% when Shape::Bool %}
+boolean
+{% when Shape::String %}
+string
+{% when Shape::Int %}
+number
+{% when Shape::Float %}
+number
+{% when Shape::Nullable { inner } %}
+{{ ShapeTemplate(inner) +}} | null
+{% when Shape::List { inner } %}
+{{ ShapeTemplate(inner) }}[]
+{% when Shape::Entity { target } %}
+{{ target }}
+{% when Shape::Map { key, value } %}
+Map<{{ ShapeTemplate(key) }}, {{ ShapeTemplate(value) }}>
+{% endmatch %}
